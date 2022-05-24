@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+    <div class="row">
+        <h1>Funcionarios</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Sobrenome</th>
+                <th scope="col">Cpf</th>
+                <th scope="col">Ação</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for funcionario in funcionarios %}
+                <tr>
+                    <td>{{ funcionario.id }}</td>
+                    <td>{{ funcionario.nome }}</td>
+                    <td>{{ funcionario.sobrenome }}</td>
+                    <td>{{ funcionario.cpf }}</td>
+                    <td>
+                        <a class="btn btn-primary" data-bs-toggle="button" href="{% url 'upd_funcionario' funcionario.pk %}">Editar</a>
+                        <a class="btn btn-danger" href="{% url 'del_funcionario' funcionario.pk %}">Deletar</a>
+                </tr>
+                </td>
+            {% endfor %}
+<button style="background-color:white" type="button"  class="btn btn-primary">
+    <a href="{% url 'cadastra_funcionario' %}">Criar Funcionario</a>
+</button>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
